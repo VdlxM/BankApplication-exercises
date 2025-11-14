@@ -49,7 +49,10 @@ jobs:
           echo "Java File Report" > java-file-report.txt
           echo "=================" >> java-file-report.txt
 
-          file_count=$(echo ${{ steps.find_java.outputs.java_files }} | wc -w)
+          file_list=$(echo "${{ steps.find_java.outputs.java_files }}" | tr ',' ' ')
+          
+          # Count files
+          file_count=$(echo $file_list | wc -w)
           echo "Number of .java files: $file_count" >> java-file-report.txt
           echo "" >> java-file-report.txt
 
@@ -57,7 +60,7 @@ jobs:
           echo "Per-file breakdown:" >> java-file-report.txt
           echo "" >> java-file-report.txt
 
-          for file in ${{ steps.find_java.outputs.java_files }}; do
+          for file in $file_list; do
             lines=$(wc -l < "$file")
             total_lines=$((total_lines + lines))
             echo "$file — $lines lines" >> java-file-report.txt
