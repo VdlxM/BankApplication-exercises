@@ -24,11 +24,16 @@ jobs:
         id: find_java
         run: |
           java_files=$(find . -type f -name "*.java")
+
           if [ -z "$java_files" ]; then
             echo "No .java files found — failing."
             exit 1
           fi
-          echo "java_files=$java_files" >> $GITHUB_OUTPUT
+
+          # Transform newline list into CSV for GitHub output
+          java_files_csv=$(echo "$java_files" | tr '\n' ',')
+
+          echo "java_files=$java_files_csv" >> $GITHUB_OUTPUT
 
       - name: Check for .class files
         run: |
