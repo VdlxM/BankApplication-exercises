@@ -34,6 +34,8 @@ public class BankAccountApp {
 		Bank accManager = new Bank();
 		BankAccount bankAccountManager = new BankAccount();
         final String Balance = "BALANCE";
+		final String Deposit = "DEPOSIT";
+		final String Withdraw = "WITHDRAW";
 		String text = "C:\\Users\\jay4k\\Desktop\\stuff\\Bankaccountinfo\\BankAccountinfotext.text";
 		// accountsLoaded = bankAccountManager.loadFromText(text);
 		accManager.setAccountsLoaded(bankAccountManager.loadFromText(text));
@@ -94,12 +96,12 @@ public class BankAccountApp {
 								System.out.println("Balance is: " + acc1.getBalance());
 							}
 
-							if (operation.equalsIgnoreCase("DEPOSIT")) {
+							if (operation.equalsIgnoreCase(Deposit)) {
 								System.out.println("Enter an amount to deposit");
 								double depositAmount = scan.nextDouble();
 								acc1.depositMoney(depositAmount);
 							}
-				if (operation.equalsIgnoreCase("WITHDRAW")) {
+				if (operation.equalsIgnoreCase(Withdraw)) {
 					System.out.println("Enter an amount to withdraw");
 					double withdrawAmount = scan.nextDouble();
 					boolean success = acc1.isAmountWithdralawValid(withdrawAmount);
@@ -158,7 +160,7 @@ public class BankAccountApp {
 						System.out.println("Balance is: " + tmpacc.getBalance());
 					}
 
-					if (operation.equalsIgnoreCase("DEPOSIT")) {
+					if (operation.equalsIgnoreCase(Deposit)){
 						System.out.println("Enter Account number");
 						number = scan.nextInt();
 						BankAccount tmpacc = accManager.findAccount(number);
@@ -171,7 +173,7 @@ public class BankAccountApp {
 						double depositAmount = scan.nextDouble();
 						tmpacc.depositMoney(depositAmount);
 					}
-				if (operation.equalsIgnoreCase("WITHDRAW")) {
+				if (operation.equalsIgnoreCase(Withdraw)) {
 					System.out.println("Enter Account number");
 					number = scan.nextInt();
 					BankAccount tmpacc = accManager.findAccount(number);
@@ -196,8 +198,8 @@ public class BankAccountApp {
 						endProgram = true;
 						mainmenu = false;
 					}
-					if (!operation.equalsIgnoreCase(Balance) && !operation.equalsIgnoreCase("DEPOSIT")
-							&& !operation.equalsIgnoreCase("WITHDRAW") && !operation.equalsIgnoreCase("QUIT")
+					if (!operation.equalsIgnoreCase(Balance) && !operation.equalsIgnoreCase(Deposit)
+							&& !operation.equalsIgnoreCase(Withdraw) && !operation.equalsIgnoreCase("QUIT")
 							&& !operation.equalsIgnoreCase("MAXIMUM") && !operation.equalsIgnoreCase("MINIMUM")
 							&& !operation.equalsIgnoreCase("AVERAGE") && !operation.equalsIgnoreCase("DELETE")) {
 						System.out.println("Invalid Command, please try again");
